@@ -15,3 +15,22 @@ The package comes with an improved color pallete for plotting. These colors can 
 Matlab lacks many of the standard colormaps. Colormaps in the package are based on the ones from Python in the package MatPlotLib, which are given under `cmap_...`. These colormaps can also be modified using an additional input, e.g., `cmap_turbo(-1)` flips the colors, whereas `cmap_turbo(0)` mirrors the colormap.
 
 <img src="./assets/colormaps.png" alt="Improved color maps" height="500">
+
+## List of documented functions
+Function Name | Description
+--- | ---
+`add2path` |  Add specified directory or current directory to the search path.
+`annihil` |  Compute the annihilator of a set of vectors.
+`background` |  Set the background color or image of the current figure.
+`clamp` |  Limit the values of an array between lower and upper bounds.
+`clr` |  Clear the command window, workspace, and figures, and turn off beep.
+`cmapping` |  Interpolate, decimate, or flip a colormap.
+`depfun` |  List dependencies required by a function.
+`hex2rgb` | Convert hexadecimal color codes to  values.
+`invlerp` |  Inverse linear interpolation.
+`iseven` |  Check if an integer is even.
+`isflint` |  Check if a scalar or vector is a floating-point integer.
+`isneg` |  Check if a scalar is negative.
+`isodd` |  Check if an integer is odd.
+`ispos` |  Check if a scalar is positive.
+
