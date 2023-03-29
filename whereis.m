@@ -12,9 +12,20 @@
 %
 % See also WHICH.
 
-
 function str = whereis(varargin)
-assert(isa(varargin{1},'char', 'Input must be a charactar array.');
-str = which(varargin{1},'-all');
-end
+assert(isa(varargin{1},'char'), 'Input must be a charactar array.');
+[str,shadow] = which(varargin{1},'-all');
+if numel(str) > 1
+    for ii = 1:numel(str)
+        if isempty(shadow{ii})
+            fprintf('[x] ');
+        else
+            fprintf('[ ] ');
+        end
 
+        fprintf([str{ii}, '\n']);
+    end
+else
+    fprintf(['[x]', str{1}, '\n']);
+end
+end
