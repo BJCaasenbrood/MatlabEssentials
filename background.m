@@ -1,16 +1,37 @@
+%BACKGROUND Set the background color or image of the current figure.
+%
+% BACKGROUND(X) sets the background of the current figure to the color
+% specified by X, which can be a 3-element vector of RGB values, a string
+% containing the name of a color ('red', 'blue', etc.), or a hexadecimal
+% RGB triplet (e.g., '#FF0000' for red).
+%
+% If X is not provided or is an empty matrix, the default color 'w'
+% (white) is used.
+%
+% BACKGROUND(IMG) sets the background of the current figure to the image
+% specified by IMG, which should be a numeric array or a filename string
+% containing the path to an image file. If IMG is a filename, it can be
+% in any format that MATLAB supports.
+%
+% Class support for input X and IMG:
+%   - X can be a double or a char array.
+%   - IMG can be any numeric array or char array containing the filename
+%     of an image.
+%
+% Examples:
+%   background('blue') sets the background of the current figure to blue.
+%   background([0.2 0.4 0.6]) sets the background of the current figure to a
+%     color with RGB values [0.2, 0.4, 0.6].
+%   background('#FF0000') sets the background of the current figure to red.
+%   background('') sets the background of the current figure to white.
+%   background(rand(100,100)) sets the background of the current figure to a
+%     random image.
+%   background('myimage.png') sets the background of the current figure to
+%     the image stored in the file 'myimage.png'.
+%
+% See also SET, GCF, IMAGESC.
+
 function background(x)
-% BACKGROUND overwrites the background color of the current figure, i.e.,
-%   gcf. Altenatively, it can be used to assign a background image. Usage:
-%
-%   % setting colors
-%   background([1,1,1]);    % set background to white
-%   background('w');        % set background to white
-%
-%   % settting images as background
-%   I = imread('egg.jpg');
-%   background(I);          % makes egg.jpg the background
-%
-%   Last edit: July 15, 2022.
 
 if nargin < 1
     x = 'w';

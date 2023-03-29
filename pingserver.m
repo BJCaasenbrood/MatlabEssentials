@@ -1,14 +1,20 @@
+%PINGSERVER Check if the computer can connect to the internet.
+%
+% X = PINGSERVER() sends a single ping packet to www.google.com and returns
+% a logical value indicating whether the packet was successfully received
+% (true) or not (false). This function can be used to check if the computer
+% is currently connected to the internet.
+%
+% Note that PINGSERVER only works on Windows, Mac, and Linux platforms.
+%
+% Examples:
+%   pingserver() returns true if the computer is currently connected to the
+%   internet.
+%
+% See also SYSTEM.
+
 function x = pingserver
-%PINGSERVER returns true for active internet connection. It will simply
-%   if www.google.com can be reached. Usage:
-%
-%   if pingserver
-%       disp('Hello internet!');
-%   else
-%       disp('404')
-%   end
-%
-%   Last edit: Jul 15, 2022.
+
 if ismac
     % Code to run on Mac platform
 elseif isunix
