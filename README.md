@@ -14,10 +14,11 @@ mpm install matessentials --all-paths
 This will generate a folder under `MATLAB Add-Ons/Collections/mpm/mobeets-mpm-c626429/mpm-packages/matessentials/`.
 
 ## Improved Matlab colors
-The package comes with an improved color pallete for plotting. These colors can simply be selected by `plot(...,'Color',col(int))` or can be overwritten
-`set_color_pallete` (a dropdown menu appears to choose). 
+The package comes with an improved color pallete for plotting. To set and fix the colororder, use `set_colororder`. 
 
 <img src="./assets/colors.png" alt="Improved color pallete" height="230">
+
+To revert back to the default matlab colors, use `set_colororder(cpal_matlab)`;
 
 ## Improved Matlab colormaps
 Matlab lacks many of the standard colormaps. Colormaps in the package are based on the ones from Python in the package MatPlotLib, which are given under `cmap_...`. These colormaps can also be modified using an additional input, e.g., `cmap_turbo(-1)` flips the colors, whereas `cmap_turbo(0)` mirrors the colormap.
