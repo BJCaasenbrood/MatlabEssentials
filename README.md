@@ -8,7 +8,7 @@ MatEssentials (from Matlab Essentials) is an attempt to fill the gaps of common 
 We highly recommend installing the essentials package using the [Matlab Package Manager](https://nl.mathworks.com/matlabcentral/fileexchange/54548-mpm?s_tid=srchtitle) (MPM), which can be easily installed via the Matlab Add-On Mananger ![](https://nl.mathworks.com/help/matlab/matlab_env/add-ons_24x24.png). Once MPM is installed, the essential package can be installed by the following command in the Matlab command window
 
 ```bash
-mpm install matessentials --all-paths
+mpm install matessentials -u https://github.com/BJCaasenbrood/MatlabEssentials.git --all-paths
 ```
 
 This will generate a folder under `MATLAB Add-Ons/Collections/mpm/mobeets-mpm-c626429/mpm-packages/matessentials/`.
