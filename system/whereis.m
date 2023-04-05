@@ -12,20 +12,27 @@
 %
 % See also WHICH.
 
-function str = whereis(varargin)
+function varargout = whereis(varargin)
 assert(isa(varargin{1},'char'), 'Input must be a charactar array.');
-[str,shadow] = which(varargin{1},'-all');
+[str, shadow] = which(varargin{1},'-all');
+
+if nargout < 1
 if numel(str) > 1
     for ii = 1:numel(str)
-        if isempty(shadow{ii})
-            fprintf('[x] ');
+        fprintf([str{ii}]);
+        if ~isempty(shadow{ii})
+            fprintf(' % Shadowed \n');
         else
-            fprintf('[ ] ');
+            fprintf('\n');
         end
-
-        fprintf([str{ii}, '\n']);
     end
 else
-    fprintf(['[x]', str{1}, '\n']);
+    fprintf([str{1},'\n']);
 end
+end
+
+%if nargout > 1
+    varargout = {str{1}};
+%end
+
 end

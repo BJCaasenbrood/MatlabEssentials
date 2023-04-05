@@ -19,12 +19,12 @@
 %
 %   See also: rmpath, genpath, cd
 
-function add2path(varargin)
+function rmfolder(varargin)
 
 if isempty(varargin)
-    addpath(genpath(cd));
+    rmpath(genpath(cd));
 else
-     addpath(genpath(varargin{1}));
+    rmpath(genpath(varargin{1}));
 end
 end
 

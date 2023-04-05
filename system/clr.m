@@ -10,8 +10,8 @@
 % See also CLC, CLEAR, CLOSE ALL.
 
 function clr
- clc;
- clear;
- close all;
- beep off;
+    clc;
+    clear;
+    close all;
+    beep off;
 end

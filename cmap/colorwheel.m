@@ -1,6 +1,6 @@
 function colorwheel()
 
-n = 60;
+n = 120;
 r = (10:n)'/n;
 theta = pi*(-n:n)/n - pi/2;
 X = r*cos(theta);

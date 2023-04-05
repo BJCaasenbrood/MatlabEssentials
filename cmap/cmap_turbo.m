@@ -102,7 +102,7 @@ colmap = ...
     0.4588    0.0902    0.0549];
 
 if nargin>0
-    colmap = clrmapping(colmap,n);
+    colmap = cmapping(colmap,n);
 end
 
 end
