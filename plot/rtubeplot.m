@@ -1,4 +1,4 @@
-function [x,y,z]=rtubeplot(curve,r,rb,s,n,ct,varargin)
+function [x,y,z] = rtubeplot(curve,r,rb,s,n,ct,varargin)
 % Usage: [x,y,z]=tubeplot(curve,r,n,ct)
 % 
 % Tubeplot constructs a tube, or warped cylinder, along
@@ -23,8 +23,10 @@ function [x,y,z]=rtubeplot(curve,r,rb,s,n,ct,varargin)
 % re     the radius at the end
 %
 
-  if nargin<3 || isempty(n), n=8;
-     if nargin<2, error('Give at least curve and radius');
+    
+  if nargin<3 
+     if nargin<2, 
+         error('Give at least curve and radius');
      end
   end
   if size(curve,1)~=3

@@ -16,11 +16,11 @@
 %
 % See also WHEREIS.
 
-function code(file, line)
+function code(name, line)
 
     % specify your editors symbolic path here
     editorpath = 'code';
-    assert(nargin>1, 'CODE requires atleast a file name');
+    assert(nargin>0, 'CODE requires atleast a file name');
 
     if nargin < 2
         addline = '';
@@ -28,7 +28,7 @@ function code(file, line)
         addline = [':', num2str(line),':00'];
     end
     
-    filepath = whereis(file);
+    filepath = whereis(name);
     command = [editorpath,' --goto "', filepath, addline,'"'];
     [status, cmdout] = system(command);
 end
