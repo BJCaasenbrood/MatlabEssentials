@@ -102,5 +102,41 @@ classdef namedtuple < dynamicprops
             end
         end
         
+function add(obj, varargin)
+    if nargin < 3
+        if iscell(varargin{1}) && numel(varargin{1}) >= 1
+            % cell array of property names
+            propNames = varargin{1};
+            propValues = {};
+        else
+            error('Invalid number of input arguments');
+        end
+    else
+        % cell array of property names and values
+        propNames  = varargin{1};
+        propValues = varargin(2:end);
+        if ~iscell(propNames)
+            propNames = {propNames};
+        end
+    end
+    
+    % add each property to the object
+    for i = 1:numel(propNames)
+        propName = propNames{i};
+        propValue = [];
+        if numel(propValues) >= i && ~isempty(propValues{i})
+            propValue = propValues{i};
+        end
+        
+        if ~isprop(obj, propName)
+           obj.addprop(propName);
+        end
+            
+        obj.(propName) = propValue;
+    end
+end
+
+
+
     end
 end

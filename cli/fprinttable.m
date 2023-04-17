@@ -10,7 +10,7 @@ function fprinttable(headers, data, varargin)
             range = [size(data, 1) - range, size(data, 1)];
         elseif strcmpi(varargin{2*ii-1},'addrow')
             addRowOnly = ~addRowOnly;
-        elseif strcmpi(varargin{2*ii-1},'open');
+        elseif strcmpi(varargin{2*ii-1},'open')
             keepLastLineFree = ~keepLastLineFree;
         end
     end
@@ -47,8 +47,13 @@ function fprinttable(headers, data, varargin)
                 end
 
             else
-                tableData{row - range(1) + 2, col} = ...
-                    num2str(data(row, col));
+
+                if isflint(data(row, col))
+                    num = num2str(data(row, col),'%d');
+                else
+                    num = num2str(data(row, col),'%.2e');
+                end
+                tableData{row - range(1) + 2, col} = num;
             end
 
         end
@@ -83,15 +88,9 @@ function fprinttable(headers, data, varargin)
 
     else
         for col = 1:num_columns
-            fprintf(repmat('\b', 1, max_widths(col) + 4));
+            fprintf(repmat('\b', 1, max_widths(col) + 3));
         end
-        % fprintf('├');
-
-        % for col = 1:num_columns
-        %     fprintf('%s┼', repmat('─', 1, max_widths(col) + 2));
-        % end
-
-        % fprintf('\b┤\n');
+        fprintf('\b');
     end
 
     % Print the table data
