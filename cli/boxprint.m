@@ -1,22 +1,30 @@
-function fprinttable(headers, data, varargin)
+function boxprint(line, varargin)
 
-    range = [1, size(data, 1)];
+    headers = {''};
+    title   = '─';
+    data    = {line};
+    range   = [1, size(data, 1)];
     addRowOnly       = false;
     keepLastLineFree = false;
+    max_widths       = 50;
 
     for ii = 1:numel(varargin)/2
         if strcmpi(varargin{2*ii-1},'range')
             range = varargin{2*ii};
             range = [size(data, 1) - range, size(data, 1)];
-        elseif strcmpi(varargin{2*ii-1},'addrow')
-            addRowOnly = varargin{2*ii};
-        elseif strcmpi(varargin{2*ii-1},'open')
-            keepLastLineFree = varargin{2*ii};
+        elseif strcmpi(varargin{2*ii-1},'start')
+            addRowOnly = ~varargin{2*ii};
+        elseif strcmpi(varargin{2*ii-1},'end')
+            keepLastLineFree = ~varargin{2*ii};
+        elseif strcmpi(varargin{2*ii-1},'title')
+            title = varargin{2*ii};            
+        elseif strcmpi(varargin{2*ii-1},'width')
+            max_widths = varargin{2*ii};
         end
     end
 
     % Combine headers and data into a cell array
-    numeHeaders = length(headers);
+    numeHeaders = 1;%length(headers);
     numeDataRows = range(2) - range(1) + 1;
     tableData = [headers; cell(numeDataRows, numeHeaders)];
 
@@ -52,27 +60,19 @@ function fprinttable(headers, data, varargin)
     % Get the dimensions of the tableData
     [num_rows, num_columns] = size(tableData);
 
-    % Calculate the maximum width for each column
-    max_widths = zeros(1, num_columns);
-
-    for col = 1:num_columns
-
-        for row = 1:num_rows
-            max_widths(col) = max(max_widths(col), ...
-                numel(tableData{row, col}));
-        end
-
-    end
-
     % Print the top border
     if ~addRowOnly
 
         fprintf('╭');
-
-        for col = 1:num_columns
-            fprintf('%s┬', repmat('─', 1, max_widths(col) + 2));
+        if ~strcmp(title,'─');
+            topCorrection = -1 - numel(title);
+            fprintf(['─ ',title,' ─']);
+        else
+            %fprintf('╭');
+            topCorrection = 3;
+            %fprintf(['']);
         end
-
+        fprintf('%s', repmat('─', 1, max_widths(col) + topCorrection));
         fprintf('\b╮\n');
 
     else
@@ -83,23 +83,23 @@ function fprinttable(headers, data, varargin)
     end
 
     % Print the table data
-    for row = 1:num_rows
+    for row = 2:num_rows
 
-        if row == 1 && ~addRowOnly
+        % if row == 1 && ~addRowOnly
+
+        %     for col = 1:num_columns
+        %         fprintf('│ %-*s ', max_widths(col), tableData{row, col});
+        %     end
+
+        %     fprintf('│\n');
+        % elseif row ~= 1
 
             for col = 1:num_columns
                 fprintf('│ %-*s ', max_widths(col), tableData{row, col});
             end
 
             fprintf('│\n');
-        elseif row ~= 1
-
-            for col = 1:num_columns
-                fprintf('│ %-*s ', max_widths(col), tableData{row, col});
-            end
-
-            fprintf('│\n');
-        end
+        % end
 
         % Print the row separator except for the last row
         if row == 1 && ~addRowOnly
