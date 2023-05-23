@@ -11,6 +11,10 @@ function obj = vararginParser(obj,varargin)
             if isprop(obj.solver, varargin{ii})
                 obj.solver.(varargin{ii}) = varargin{ii + 1};
             end
+        elseif isprop(obj, 'params')
+            if isfield(obj.params, varargin{ii})
+                obj.params.(varargin{ii}) = varargin{ii + 1};
+            end
         end
     end
 

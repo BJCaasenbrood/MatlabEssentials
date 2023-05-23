@@ -10,7 +10,7 @@ function fileNames = findextension(path, extension)
 %     specified extension in the folder
 
 % Get a list of all files in the folder
-files = dir(fullfile((path, '*'));
+files = dir(fullfile(path, '*'));
 
 % Initialize a cell array to store the file names
 fileNames = {};

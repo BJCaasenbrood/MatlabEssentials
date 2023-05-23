@@ -12,6 +12,6 @@ fileList = dir(fullfile(dirPath, '*'));
 % Filter out directories and files starting with specified prefix
 isFile = ~[fileList.isdir];
 hasPrefix = strncmp({fileList.name}, prefix, length(prefix));
-fileList = {fileList(~isFile & ~hasPrefix).name};
+fileList = {fileList(isFile & ~hasPrefix).name};
 
 end

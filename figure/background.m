@@ -43,7 +43,7 @@ if (isa(x,'double') && size(x(:),1) == 3) || (isa(x,'char'))
     fig.InvertHardcopy = 'off';
 else
     ah = axes('unit', 'normalized', 'position', [0 0 1 1]);
-    imagesc(x);
+    imshow(x);
     set(ah,'handlevisibility','off','visible','off');
     uistack(ah,'bottom');
 end
