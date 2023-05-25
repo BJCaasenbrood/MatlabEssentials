@@ -31,8 +31,9 @@ else
 end
 end
 
-%if nargout > 1
-    varargout = {str{1}};
-%end
+path = str{1};
+if nargout == 1
+    varargout = path(1:end - numel(varargin{1}) - 2);
+end
 
 end
