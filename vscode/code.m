@@ -28,7 +28,7 @@ function code(name, line)
         addline = [':', num2str(line),':00'];
     end
     
-    filepath = whereis(name);
+    filepath = which(name);
     command = [editorpath,' --goto "', filepath, addline,'"'];
     [status, cmdout] = system(command);
 end
