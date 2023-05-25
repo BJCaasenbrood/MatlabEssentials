@@ -13,27 +13,28 @@
 % See also WHICH.
 
 function varargout = whereis(varargin)
-assert(isa(varargin{1},'char'), 'Input must be a charactar array.');
-[str, shadow] = which(varargin{1},'-all');
-
-if nargout < 1
-if numel(str) > 1
-    for ii = 1:numel(str)
-        fprintf([str{ii}]);
-        if ~isempty(shadow{ii})
-            fprintf(' % Shadowed \n');
-        else
-            fprintf('\n');
+    assert(isa(varargin{1},'char'), 'Input must be a charactar array.');
+    [str, shadow] = which(varargin{1},'-all');
+    
+    if nargout < 1
+    if numel(str) > 1
+        for ii = 1:numel(str)
+            fprintf([str{ii}]);
+            if ~isempty(shadow{ii})
+                fprintf(' % Shadowed \n');
+            else
+                fprintf('\n');
+            end
         end
+    else
+        fprintf([str{1},'\n']);
     end
-else
-    fprintf([str{1},'\n']);
-end
-end
-
-path = str{1};
-if nargout == 1
-    varargout = path(1:end - numel(varargin{1}) - 2);
-end
+    end
+    
+    [path,filename,ext] = fileparts(str{1});
+    varargout{1} = path;
+    varargout{2} = filename;
+    varargout{3} = ext;
 
 end
+    
