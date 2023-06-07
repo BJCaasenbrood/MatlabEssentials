@@ -6,7 +6,8 @@ function boxprint(line, varargin)
     range   = [1, size(data, 1)];
     addRowOnly       = false;
     keepLastLineFree = false;
-    max_widths       = 50;
+    cmdWidth = get(0,'CommandWindowSize');
+    max_widths = cmdWidth(1) - 4;
 
     for ii = 1:numel(varargin)/2
         if strcmpi(varargin{2*ii-1},'range')
