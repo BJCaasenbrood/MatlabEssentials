@@ -10,9 +10,10 @@ function Y = planeproject(n1, n2, z)
     if all(Nv == 0)
         error('The plane defined by the input vectors is degenerate.');
     else
-        N = N / norm(Nv);
+        N = Nv / norm(Nv);
     end
     
     % Project the vector onto the plane
-    Y = z - dot(z, normalVec) * normalVec;
+    Y = z - dot(z, N) * N;
 end
+
