@@ -1,18 +1,18 @@
-% NAMEDTUPLE  A class that creates a named tuple object.
+% NamedTuple  A class that creates a named tuple object.
 %
 %   A named tuple is an object that stores a set of named properties that
 %   can be accessed using dot notation, similar to a struct. It is useful
 %   for storing a fixed set of properties that need to be accessed by name,
 %   but where the number of properties may vary between different instances.
 %
-%   obj = namedtuple(name, propNames, propValues) creates a new named tuple
+%   obj = NamedTuple(name, propNames, propValues) creates a new named tuple
 %   object with the specified name, property names, and values.
 %   'name' is a string specifying the name of the object, 'propNames' is a
 %   cell array of strings specifying the names of the properties, and
 %   'propValues' is a cell array of values to initialize the properties.
 %   If a property value is not specified, it defaults to [].
 %
-%   obj = namedtuple(otherObj) creates a new named tuple object that is a
+%   obj = NamedTuple(otherObj) creates a new named tuple object that is a
 %   copy of the specified 'otherObj'. The new object has the same property
 %   names and values as the original object, but with a different name.
 %
@@ -23,13 +23,13 @@
 %   Example usage:
 %
 %   % create a named tuple with two properties
-%   obj = namedtuple('myTuple', {'foo', 'bar'}, 42, 'hello');
+%   obj = NamedTuple('myTuple', {'foo', 'bar'}, 42, 'hello');
 %   % access the properties
 %   assert(obj.foo == 42);
 %   assert(strcmp(obj.bar, 'hello'));
 %
 %   % create a new tuple that is a copy of the first one
-%   obj2 = namedtuple(obj);
+%   obj2 = NamedTuple(obj);
 %   assert(obj2.foo == obj.foo);
 %   assert(strcmp(obj2.bar, obj.bar));
 %
@@ -42,7 +42,7 @@
 %   assert(strcmp(obj.bar, 'world'));
 %
 %   % create a new tuple from itsself
-%   Prop = namedtuple('Prop',{'a','b'});
+%   Prop = NamedTuple('Prop',{'a','b'});
 %   obj = Prop.self(1,2);
 %   assert(strcmp(obj.a, 1));
 %   assert(strcmp(obj.b, 2));
@@ -50,14 +50,14 @@
 %   See also STRUCT.
 
 
-classdef namedtuple < dynamicprops
+classdef NamedTuple < dynamicprops
     properties
         Name
     end
     
     methods
-        function obj = namedtuple(varargin)
-            if nargin > 0 && isa(varargin{1}, 'namedtuple')
+        function obj = NamedTuple(varargin)
+            if nargin > 0 && isa(varargin{1}, 'NamedTuple')
                 obj = varargin{1};
                 propNames = properties(obj);
                 propValues = varargin(1:end);

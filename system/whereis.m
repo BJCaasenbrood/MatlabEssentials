@@ -13,6 +13,8 @@
 % See also WHICH.
 
 function varargout = whereis(varargin)
+    
+    assert(~isempty(varargin), 'Input cannot be empty');
     assert(isa(varargin{1},'char'), 'Input must be a charactar array.');
     [str, shadow] = which(varargin{1},'-all');
     
@@ -32,9 +34,13 @@ function varargout = whereis(varargin)
     end
     
     [path,filename,ext] = fileparts(str{1});
-    varargout{1} = path;
-    varargout{2} = filename;
-    varargout{3} = ext;
 
+    for i = 1:nargout
+        switch i
+        case 1, varargout{1} = path;
+        case 2, varargout{2} = filename;
+        case 3, varargout{3} = ext;
+        end
+    end
 end
     

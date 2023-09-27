@@ -7,5 +7,6 @@ elseif size(X,2) == 3 && size(X,3) > 1
 else
     h = plot3(X(:,1),X(:,2),X(:,3),varargin{:});
 end
+
 end
 

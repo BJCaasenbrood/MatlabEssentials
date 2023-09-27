@@ -20,10 +20,7 @@ function [x,y,z] = rtubeplot(curve,r,rb,s,n,ct,varargin)
 % The algorithms fails if you have bends beyond 90 degrees.
 % Janus H. Wesenberg, july 2004
 % Modified 14 Nov, 2022 - Brandon Caasenbrood
-% re     the radius at the end
-%
 
-    
   if nargin<3 
      if nargin<2, 
          error('Give at least curve and radius');
@@ -70,8 +67,7 @@ function [x,y,z] = rtubeplot(curve,r,rb,s,n,ct,varargin)
   nvec=zeros(3,1);
   [~,idx]=min(abs(dv(:,1))); nvec(idx)=1;
 
-  xyz=repmat([0],[3,n+1,npoints+2]);
-  
+  xyz = zeros(3,n+1,npoints+2);
   X = linspace(0,2*pi,n+1);
   [Fx,Fy] = squircle(X,s,r,rb);
   
@@ -98,22 +94,38 @@ function [x,y,z] = rtubeplot(curve,r,rb,s,n,ct,varargin)
     
     xyz(:,:,k+1)=repmat(curve(:,k),[1,n+1])+...
         cfact.*repmat(R(k)*nvec,[1,n+1])...
-        +sfact.*repmat(R(k)*convec,[1,n+1]);
+         + sfact.*repmat(R(k)*convec,[1,n+1]);
   end
   
   %finally, cap the ends:
-  xyz(:,:,1)   =repmat(curve(:,1),[1,n+1]);
-  xyz(:,:,end) =repmat(curve(:,end),[1,n+1]);
+  xyz(:,:,1)   = repmat(curve(:,1),[1,n+1]);
+  xyz(:,:,end) = repmat(curve(:,end),[1,n+1]);
+
+  XY   = xyz(:,:,2).';
+  Rmin = min( sqrt(XY(:,1).^2 + XY(:,2).^2 + XY(:,3).^2) );
+
+  % find nodes that are being spherically capped 
+  Icap = curve(1,:) >= max(curve(1,:)) - Rmin * 0.95;
+  delta = diff(curve(1,:));
+  N = numel(Icap(Icap));
+
+  % get relative height on the sphere dome
+  relHeight = fliplr(cumsum(delta(end-N+1:end)));
   
+  % backwards loop over planes, and scale accordinglys
+  for ii = 1:N
+    theta = asin(clamp(relHeight(ii) / Rmin, 0, 1));
+    xyz(2:3,:,end-ii) = cos(theta) * xyz(2:3,:,end-ii);
+  end
+
   %,extract results:
   x=squeeze(xyz(1,:,:));
   y=squeeze(xyz(2,:,:));
   z=squeeze(xyz(3,:,:));
 end
 
-%%
+%% SQUIRCLE squircle(th,s,ra,rb)
 function [x,y] = squircle(t,s,ra,rb)
-%SQUIRCLE squircle(th,s,ra,rb)
 
 % clamp s values
 s = min(max(s,1e-6),1-1e-6);
@@ -130,9 +142,3 @@ Ry2 = -RB*(2 - 2*s*sqrt(2) * sin(t) - s^2 * cos(2*t)).^0.5;
 x = Rx1 + Rx2;
 y = Ry1 + Ry2;
 end
-
-
-  
-  %... and plot:
-%   if nargout<3, surf(x,y,z); end;
-  
