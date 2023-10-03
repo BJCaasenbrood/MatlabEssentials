@@ -8,6 +8,9 @@ if numel(X) == 7
 elseif numel(X) == 4
     R = quat2rot(X);  % Rot-mat SO(3)    
     p = varargin{1};
+elseif numel(X) == 3
+    R = eye(3);  % Rot-mat SO(3)    
+    p = X;    
 elseif numel(X) == 9
     R = X;
     if ~isempty(varargin)

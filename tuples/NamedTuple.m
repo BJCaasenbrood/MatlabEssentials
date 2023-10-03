@@ -49,59 +49,62 @@
 %
 %   See also STRUCT.
 
-
 classdef NamedTuple < dynamicprops
-    properties
-        Name
-    end
+
+properties
+    Name
+end
     
-    methods
-        function obj = NamedTuple(varargin)
-            if nargin > 0 && isa(varargin{1}, 'NamedTuple')
-                obj = varargin{1};
-                propNames = properties(obj);
-                propValues = varargin(1:end);
-                
-                for i = 1:numel(propValues)
-                    propName = propNames{i};
-                    if ~strcmp(propName, 'Name')
-                        obj.(propName) = propValues{i};
-                    end
-                end
-            else
-                if nargin > 1
-                    obj.Name = varargin{1};
-                    propNames = varargin{2};
-                    
-                    n = numel(propNames);
-                    propValues = varargin(3:end);
-                    
-                    for i = 1:n
-                        propName = propNames{i};
-                        propValue = [];
-                        if nargin > 2 && numel(propValues) >= i
-                            propValue = propValues{i};
-                        end
-                        obj.addprop(propName);
-                        obj.(propName) = propValue;
-                    end
-                end
-            end
-        end
-
-        function obj = self(varargin)
-            obj = varargin{1};
-            propNames = properties(obj);
-            propValues = varargin(1:end);
-
-            for i = 1:numel(propValues)
-                propName = propNames{i};
-                if ~strcmp(propName, 'Name')
-                    obj.(propName) = propValues{i};
-                end
-            end
-        end
+methods
+function obj = NamedTuple(varargin)
+    % copy a NamedTuple
+    if nargin > 0 && isa(varargin{1},'NamedTuple')
+        obj = varargin{1};
+        propNames  = properties(obj);
+        propValues = varargin(1:end);
         
+        for i = 1:numel(propValues)
+            propName = propNames{i};
+            if ~strcmp(propName,'Name')
+                obj.(propName) = propValues{i};
+            end
+        end
+    elseif nargin == 1  % only specify names
+        obj.Name = varargin{1};
+    else  % specify names, arg, and values
+        if nargin > 1
+            obj.Name = varargin{1};
+            propNames = varargin{2};
+            
+            n = numel(propNames);
+            propValues = varargin(3:end);
+            
+            for i = 1:n
+                propName = propNames{i};
+                propValue = [];
+                if nargin > 2 && numel(propValues) >= i
+                    propValue = propValues{i};
+                end
+                obj.addprop(propName);
+                obj.(propName) = propValue;
+            end
+        end
+    end
+end
+
+function obj = self(varargin)
+    obj = varargin{1};
+    propNames = properties(obj);
+    propValues = varargin(1:end);
+
+    for i = 1:numel(propValues)
+        propName = propNames{i};
+        if ~strcmp(propName, 'Name')
+            obj.(propName) = propValues{i};
+        end
+    end
+end
+
 function add(obj, varargin)
     if nargin < 3
         if iscell(varargin{1}) && numel(varargin{1}) >= 1
@@ -136,7 +139,11 @@ function add(obj, varargin)
     end
 end
 
+% function obj = order(obj, varargin)
+%     props = properties(obj);
+%     [~,idx] = sort(props);
+%     obj = orderfields(obj,idx);
+% end
 
-
-    end
+end
 end

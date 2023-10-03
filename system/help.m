@@ -16,7 +16,6 @@ function [out, docTopic] = help(varargin)
         end
 
         process.getHelpText;
-        % process.prepareHelpForDisplay;
     end
 
     
@@ -38,7 +37,6 @@ function [out, docTopic] = help(varargin)
     str = strrep(str,'\','\\');
     str = strrep(str,'\','\\');
 
-    
     tcprintf('darkGray',str);
     tcprintf('black','');
 end
