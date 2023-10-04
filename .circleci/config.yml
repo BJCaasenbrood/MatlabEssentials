@@ -8,5 +8,7 @@ jobs:
     steps:
       - checkout
       - matlab/install
+      - run: git clone https://github.com/mobeets/mpm.git
+      - run: cd mpm
       - matlab/run-command:
           command: results = runtests('./tests/TestMatlabEssentialsKit.m'); assertSuccess(results);
