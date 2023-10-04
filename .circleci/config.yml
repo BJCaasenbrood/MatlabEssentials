@@ -7,7 +7,7 @@ jobs:
       image: ubuntu-2204:2022.07.1
     steps:
       - checkout
-      - run: git clone https://github.com/mobeets/mpm.git tmp
+      - run: git clone https://github.com/mobeets/mpm.git temp
       - run: mv temp/mpm.m . & mv temp/mpm_config.m . & mv temp/mpm_nls.mat . & mkdir mpm-packages
       - run: rm -rf temp
       - run: ls -a
