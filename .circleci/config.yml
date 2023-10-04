@@ -11,4 +11,4 @@ jobs:
       - run: git clone https://github.com/mobeets/mpm.git mpm_clone
       - run: cd mpm_clone
       - matlab/run-command:
-          command: results = runtests('./tests/TestMatlabEssentialsKit.m'); assertSuccess(results);
+          command: pwd; ls; results = runtests('./tests/TestMatlabEssentialsKit.m'); assertSuccess(results);
