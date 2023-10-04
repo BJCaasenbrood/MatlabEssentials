@@ -4,5 +4,7 @@ function f = benchmark(varargin)
     %disp(fncStr);
     f = str2func(char(fncStr));
     %eval(fncStr);
+    %tic;
     f([]);
+    %toc;
 end

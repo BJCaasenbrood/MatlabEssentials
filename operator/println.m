@@ -1,4 +1,4 @@
-function print(str)
+function println(str)
 if isa(str,'string'), cout(strcat(">> ",str));
 elseif isa(str,'char'), cout(['>> ',str]);
 end

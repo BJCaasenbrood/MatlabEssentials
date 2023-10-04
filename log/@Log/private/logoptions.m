@@ -4,7 +4,7 @@ function opt = logoptions
     opt.Name = 'logoptions';
 
     opt.add('Tag',NamedTuple('Tag'));
-    opt.Tag.add('Info','\b');
+    opt.Tag.add('Info',' \b');
     opt.Tag.add('Warn','Warning');
     opt.Tag.add('Debug','Debug');
     opt.Tag.add('Error','Error');

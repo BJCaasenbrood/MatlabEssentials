@@ -128,7 +128,7 @@ function upd = progress(Log, n, varargin)
         % Initial render:
         array(startMsgStart:startMsgEnd) = sprintf('%s', startMsg);
     
-        delAll = repmat('\b', 1, arrayLen +1);
+        delAll = repmat('\b', 1, arrayLen);
         
             % Function to update the status of the progress bar:
             function update(i)
@@ -186,8 +186,15 @@ function upd = progress(Log, n, varargin)
                     sStart = sEnd + 1;
                     sEnd = sEnd + barsToPrint + 3;
                     tcprintf('green','%s',array(sStart:sEnd-3));
-                    tcprintf('green','%s',"  100%%");
-                    str = strrep(array(sEnd+1:end),'%','%%');
+                    
+                    if ~usejava('desktop')
+                        tcprintf('green','%s',"  100%%");
+                        str = strrep(array(sEnd+1:end),'%','%%');
+                    else 
+                        tcprintf('green','%s',"  100%");
+                        str = strrep(array(sEnd+1:end),'%','%');
+                    end
+
                     tcprintf('default','%s',str);
                     fprintf('\n');
                     return;

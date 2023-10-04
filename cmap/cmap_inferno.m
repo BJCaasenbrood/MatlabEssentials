@@ -1,4 +1,4 @@
-function colmap = inferno(n)
+function colmap = cmap_inferno(n)
 colmap = ...
     [0.0784    0.0431    0.2039
     0.1329    0.0484    0.2177
@@ -102,7 +102,7 @@ colmap = ...
     1.0000    0.9647    0.9020];
 
 if nargin>0
-    colmap = clrmapping(colmap,n);
+    colmap = cmapping(colmap,n);
 end
 
 end

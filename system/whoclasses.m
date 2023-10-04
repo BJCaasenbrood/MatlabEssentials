@@ -13,6 +13,5 @@ function id = whoclasses(ClassName)
             j = j+1;
         end
     end
-    
-    end
+end
     

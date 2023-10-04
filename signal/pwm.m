@@ -5,7 +5,7 @@ if isempty(varargin)
 else
     duty = clamp(varargin{1},0,1);
 end
-z = -sawtooth(t) + (1-duty);
+z = -sawtooth(0.9999 * t) + (1-duty);
 y = clamp(-sign(z),0,1);
 end
 
