@@ -10,3 +10,5 @@ jobs:
       - matlab/install
       - matlab/run-command:
           command: results = runtests('./tests/TestMatlabEssentialsKit.m'); assertSuccess(results);
+      - matlab/run-command:
+          command: results = runtests('./tests/TestMatlabEssentialsKit.m'); assertSuccess(results);
