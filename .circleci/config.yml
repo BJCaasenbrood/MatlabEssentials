@@ -8,7 +8,8 @@ jobs:
     steps:
       - checkout
       - matlab/install
-      - run: git clone https://github.com/mobeets/mpm.git mpm_clone
-      - run: cd mpm_clone
+      - run: git clone https://github.com/mobeets/mpm.git .
       - matlab/run-command:
-          command: pwd; ls; results = runtests('./tests/TestMatlabEssentialsKit.m'); assertSuccess(results);
+          command: mpm(action,'inpolyhedron','--all-paths');
+      - matlab/run-command:
+          command: results = runtests('./tests/TestMatlabEssentialsKit.m'); assertSuccess(results);
