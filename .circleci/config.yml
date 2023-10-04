@@ -13,6 +13,6 @@ jobs:
       - run: ls -a
       - matlab/install
       - matlab/run-command:
-          command: mpm('install','inpolyhedron','--all-paths');
+          command: ver; mpm('install','inpolyhedron','--all-paths');
       - matlab/run-command:
           command: results = runtests('./tests/TestMatlabEssentialsKit.m'); assertSuccess(results);
