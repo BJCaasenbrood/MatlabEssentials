@@ -7,8 +7,10 @@ jobs:
       image: ubuntu-2204:2022.07.1
     steps:
       - checkout
-      - matlab/install
+      - run: ls 
+      - run: pwd
       - run: git clone https://github.com/mobeets/mpm.git .
+      - matlab/install
       - matlab/run-command:
           command: mpm(action,'inpolyhedron','--all-paths');
       - matlab/run-command:
