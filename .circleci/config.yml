@@ -10,8 +10,9 @@ jobs:
       - run: git clone https://github.com/mobeets/mpm.git tmp
       - run: mv temp/mpm.m . & mv temp/mpm_config.m . & mv temp/mpm_nls.mat . & mkdir mpm-packages
       - run: rm -rf temp
+      - run: ls -a
       - matlab/install
       - matlab/run-command:
-          command: mpm(action,'inpolyhedron','--all-paths');
+          command: mpm('install','inpolyhedron','--all-paths');
       - matlab/run-command:
           command: results = runtests('./tests/TestMatlabEssentialsKit.m'); assertSuccess(results);
