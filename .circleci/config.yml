@@ -7,9 +7,9 @@ jobs:
       image: ubuntu-2204:2022.07.1
     steps:
       - checkout
-      - run: ls 
-      - run: pwd
-      - run: git clone https://github.com/mobeets/mpm.git .
+      - run: git clone https://github.com/mobeets/mpm.git tmp
+      - run: mv temp/mpm.m . & mv temp/mpm_config.m . & mv temp/mpm_nls.mat . & mkdir mpm-packages
+      - run: rm -rf temp
       - matlab/install
       - matlab/run-command:
           command: mpm(action,'inpolyhedron','--all-paths');
