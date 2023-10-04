@@ -1,6 +1,6 @@
 # MatEssentials
 
-[![View Matlab Essentials on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://nl.mathworks.com/matlabcentral/fileexchange/126989-matlab-essentials)
+[![View Matlab Essentials on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://nl.mathworks.com/matlabcentral/fileexchange/126989-matlab-essentials) [![MATLAB](https://github.com/BJCaasenbrood/MatlabEssentialsKit/actions/workflows/ci.yml/badge.svg)](https://github.com/BJCaasenbrood/MatlabEssentialsKit/actions/workflows/ci.yml) [![CircleCI](https://circleci.com/gh/BJCaasenbrood/MatlabEssentialsKit.svg?style=svg)](https://circleci.com/gh/BJCaasenbrood/MatlabEssentialsKit)
 
 MatEssentials (from Matlab Essentials) is an attempt to fill the gaps of common programming functions that are not included into the base installation. Some of these functions are for example `lerp`, `sigmoid`, `linespacen`, `rot2d`, `rotx`,  `random`, `randint`, `depfun`, `isodd`, `isneg` and many others. Additionally, we provide an extensive color packages with syntax `color_` and colormaps under `cmap_` (based on the matplotlib in Python).
 
