@@ -8,10 +8,5 @@ jobs:
     steps:
       - checkout
       - matlab/install
-      - matlab/run-build:
-          tasks: test
-workflows:
-  build:
-    jobs:
-      - build
-
+      - matlab/run-command:
+      		command: results = runtests; assertSuccess(results);
