@@ -1,17 +1,17 @@
 version: '2.1'
 orbs:
-  matlab: mathworks/matlab@0.12.0
+  matlab: mathworks/matlab@0
 jobs:
   build:
     machine:
-      image: ubunutu-2204:2022:0.07.1
+      image: ubuntu-2204:2022.07.1
     steps:
-        - checkout
-        - matlab/install
-        - matlab/run-command:
-            command: myscript
-
+      - checkout
+      - matlab/install
+      - matlab/run-build:
+          tasks: test
 workflows:
   build:
     jobs:
       - build
+
