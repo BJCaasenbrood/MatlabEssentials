@@ -30,7 +30,7 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Run all tests
-        uses: mmatlab-actions/run-command@v1
+        uses: matlab-actions/run-command@v1
         with:
           command: results = runtests('./tests/TestMatlabEssentialsKit.m'); assertSuccess(results);
           # source-folder: code
