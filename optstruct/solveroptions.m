@@ -2,6 +2,7 @@ classdef solveroptions
     
     properties
         sol;
+        pod;
         Residual;
         AbsTolerance;
         RelTolerance;
@@ -29,6 +30,7 @@ classdef solveroptions
     methods
         function obj = solveroptions
             obj.sol            = struct;
+            obj.pod            = struct;
             obj.Residual       = 1e6;
             obj.AbsTolerance   = 1e-3;
             obj.RelTolerance   = 1e-3;
