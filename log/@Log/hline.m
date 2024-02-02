@@ -12,7 +12,7 @@ function hline(Log,varargin)
     lineStr = repmat('━', 1, arrayLen + 1 - numel(msg));
 
     tcprintf(Log.options.Color.TextInfo, msg);
-    tcprintf(Log.options.Color.TextHide, lineStr);
+    tcprintf(Log.options.Color.TextInfo, lineStr);
     tcprintf('','\n');
     
 end

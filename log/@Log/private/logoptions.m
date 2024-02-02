@@ -21,7 +21,7 @@ function opt = logoptions
 
     % colors for plotting
     opt.Color.add('TextInfo','default');
-    opt.Color.add('TextHide','darkGray');
+    opt.Color.add('TextHide','default');
 
     % setting symbols
     opt.add('Symbol',NamedTuple('Symbol'));
@@ -29,8 +29,6 @@ function opt = logoptions
     opt.Symbol.add('BulletMid','├╴');    % ├╴
     opt.Symbol.add('BulletEnd','╰╴');    % ╰╴
 
-
     opt.add('isHide',false);
     opt.add('isDebug',false);
-
 end
