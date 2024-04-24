@@ -1,5 +1,5 @@
 function BdBox = boxhull(Node,eps)
-if nargin < 2, eps = 1e-6; end
+if nargin < 2, eps = 0; end
 
 if size(Node,2) == 2
     BdBox = zeros(4,1);

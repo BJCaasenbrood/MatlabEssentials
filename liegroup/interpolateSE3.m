@@ -50,6 +50,8 @@
 
 function Z = interpolateSE3(X,Y,t,varargin)
 
+    tol = 1e-9;
+
     if ~isempty(varargin)
         switch varargin{1}
             case 'equal', t = 3*t^2 - 2*t^3; % velocity twist equal between X and Y
@@ -62,26 +64,24 @@ function Z = interpolateSE3(X,Y,t,varargin)
     T = dH(1:3,4);
 
     % get log of rotation matrix
-    S = logmapSO3(R);
+    S  = logmapSO3(R);
     th = norm([S(3,2); S(1,3); S(2,1)]);
 
-    if abs(th) < 1e-9;
-        eps = 1e-6;
-        S = logmapSO3(R*rotx(pi * rand *eps)*roty(pi * rand *eps));
-        th = norm([S(3,2); S(1,3); S(2,1)]);
+    if abs(th) >= tol
+        tth = t*th;        
+        Vi  = eye(3) - 0.5 * S + (1/(th^2)) * (1 - (th*sin(th))/(2*(1-cos(th))))*(S*S);
+        Vt  = eye(3) + ((1-cos(tth))/(tth)^2)*(t*S) + ((tth - sin(tth))/((tth)^3)) * (t*S) * (t*S);
+    else
+        Vi = eye(3);
+        Vt = Vi;
     end
-    Vi = eye(3) - 0.5 * S + (1/(th^2)) * (1 - (th*sin(th))/(2*(1-cos(th))))*(S*S);
+
     U  = Vi * T;
-
-    tth = t*th;
     Rt = expmapSO3(t * S);
-    Vt = eye(3) + ((1-cos(tth))/(tth)^2)*(t*S) + ((tth - sin(tth))/((tth)^3)) * (t*S) * (t*S);
-
     Tt = t * Vt * U;
-    Z = ([Rt,Tt;0,0,0,1]) * X;
+    Z  = ([Rt,Tt;0,0,0,1]) * X;
 
 end
-
 
 function Y = logmapSO3(X)
     S = X;
